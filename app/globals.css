@@ -2,60 +2,659 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+/* =========================================
+   Arch Hyprland Rice Theme - Catppuccin Mocha
+   ========================================= */
+
+:root,
+[data-theme="dark"] {
+  /* Catppuccin Mocha Base Colors (Dark Theme) */
+  --hypr-base: #1e1e2e;
+  --hypr-mantle: #181825;
+  --hypr-crust: #11111b;
+  --hypr-surface0: #313244;
+  --hypr-surface1: #45475a;
+  --hypr-surface2: #585b70;
+  --hypr-overlay0: #6c7086;
+  --hypr-overlay1: #7f849c;
+  --hypr-overlay2: #9399b2;
+
+  /* Text Colors */
+  --hypr-text: #cdd6f4;
+  --hypr-subtext0: #a6adc8;
+  --hypr-subtext1: #bac2de;
+
+  /* Accent Colors */
+  --hypr-lavender: #b4befe;
+  --hypr-blue: #89b4fa;
+  --hypr-sapphire: #74c7ec;
+  --hypr-sky: #89dceb;
+  --hypr-teal: #94e2d5;
+  --hypr-green: #a6e3a1;
+  --hypr-yellow: #f9e2af;
+  --hypr-peach: #fab387;
+  --hypr-maroon: #eba0ac;
+  --hypr-red: #f38ba8;
+  --hypr-mauve: #cba6f7;
+  --hypr-pink: #f5c2e7;
+  --hypr-flamingo: #f2cdcd;
+  --hypr-rosewater: #f5e0dc;
+
+  /* Window styling */
+  --hypr-border-radius: 12px;
+  --hypr-window-border: 2px;
+  --hypr-gap: 8px;
+
+  /* Animation */
+  --hypr-transition-fast: 150ms;
+  --hypr-transition-normal: 250ms;
+  --hypr-transition-slow: 400ms;
+}
+
+/* Catppuccin Latte (Light Theme) */
+[data-theme="light"] {
+  --hypr-base: #eff1f5;
+  --hypr-mantle: #e6e9ef;
+  --hypr-crust: #dce0e80c;
+  --hypr-surface0: #ccd0da;
+  --hypr-surface1: #bcc0cc;
+  --hypr-surface2: #acb0be;
+  --hypr-overlay0: #9ca0b0;
+  --hypr-overlay1: #8c8fa1;
+  --hypr-overlay2: #7c7f93;
+
+  /* Text Colors */
+  --hypr-text: #4c4f69;
+  --hypr-subtext0: #6c6f85;
+  --hypr-subtext1: #5c5f77;
+
+  /* Accent Colors - Slightly adjusted for light bg */
+  --hypr-lavender: #7287fd;
+  --hypr-blue: #1e66f5;
+  --hypr-sapphire: #209fb5;
+  --hypr-sky: #04a5e5;
+  --hypr-teal: #179299;
+  --hypr-green: #40a02b;
+  --hypr-yellow: #df8e1d;
+  --hypr-peach: #fe640b;
+  --hypr-maroon: #e64553;
+  --hypr-red: #d20f39;
+  --hypr-mauve: #8839ef;
+  --hypr-pink: #ea76cb;
+  --hypr-flamingo: #dd7878;
+  --hypr-rosewater: #dc8a78;
+}
+
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  background-color: var(--hypr-crust);
+  color: var(--hypr-text);
+  overflow: hidden;
+}
+
+/* =========================================
+   Glassmorphism & Blur Effects
+   ========================================= */
+
+.hypr-blur {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+.hypr-blur-light {
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+}
+
+.hypr-glass {
+  background: rgba(30, 30, 46, 0.75);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(205, 214, 244, 0.1);
+}
+
+/* =========================================
+   Waybar Styling
+   ========================================= */
+
+.waybar {
+  background: rgba(17, 17, 27, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(205, 214, 244, 0.08);
+  height: 36px;
+}
+
+.waybar-module {
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--hypr-transition-fast) ease;
+}
+
+.waybar-module:hover {
+  background: rgba(205, 214, 244, 0.08);
+}
+
+.workspace-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--hypr-surface2);
+  transition: all var(--hypr-transition-fast) ease;
+}
+
+.workspace-indicator.active {
+  background: var(--hypr-mauve);
+  box-shadow: 0 0 12px var(--hypr-mauve);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.workspace-indicator:hover:not(.active) {
+  background: var(--hypr-overlay0);
+  transform: scale(1.2);
+}
+
+/* =========================================
+   Window Frame Styling
+   ========================================= */
+
+.hypr-window {
+  background: rgba(24, 24, 37, 0.9);
+  border-radius: var(--hypr-border-radius);
+  border: var(--hypr-window-border) solid rgba(205, 214, 244, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  overflow: hidden;
+  transition: all var(--hypr-transition-normal) ease;
+}
+
+.hypr-window:hover {
+  border-color: rgba(203, 166, 247, 0.3);
+}
+
+.hypr-window.focused {
+  border-color: var(--hypr-mauve);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(203, 166, 247, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.hypr-window-titlebar {
+  background: rgba(17, 17, 27, 0.95);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(205, 214, 244, 0.05);
+  user-select: none;
+  cursor: grab;
+}
+
+.hypr-window-titlebar:active {
+  cursor: grabbing;
+}
+
+.hypr-window-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--hypr-subtext1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hypr-window-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.hypr-window-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all var(--hypr-transition-fast) ease;
+  opacity: 0.7;
+}
+
+.hypr-window-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.hypr-window-btn.close {
+  background: var(--hypr-red);
+}
+
+.hypr-window-btn.minimize {
+  background: var(--hypr-yellow);
+}
+
+.hypr-window-btn.maximize {
+  background: var(--hypr-green);
+}
+
+.hypr-window-content {
+  padding: 16px;
+  max-height: calc(100% - 40px);
+  overflow-y: auto;
+}
+
+/* Custom scrollbar for windows */
+.hypr-window-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.hypr-window-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hypr-window-content::-webkit-scrollbar-thumb {
+  background: var(--hypr-surface1);
+  border-radius: 4px;
+}
+
+.hypr-window-content::-webkit-scrollbar-thumb:hover {
+  background: var(--hypr-surface2);
+}
+
+/* =========================================
+   Terminal Styling
+   ========================================= */
+
+.hypr-terminal {
+  background: rgba(17, 17, 27, 0.98);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.hypr-terminal-output {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.hypr-prompt {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hypr-prompt-user {
+  color: var(--hypr-green);
+  font-weight: 600;
+}
+
+.hypr-prompt-at {
+  color: var(--hypr-subtext0);
+}
+
+.hypr-prompt-host {
+  color: var(--hypr-mauve);
+  font-weight: 600;
+}
+
+.hypr-prompt-path {
+  color: var(--hypr-blue);
+}
+
+.hypr-prompt-symbol {
+  color: var(--hypr-mauve);
+  font-weight: 700;
+}
+
+.hypr-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--hypr-text);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
   }
 
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Terminal colors for output */
+.term-red {
+  color: var(--hypr-red);
+}
+
+.term-green {
+  color: var(--hypr-green);
+}
+
+.term-yellow {
+  color: var(--hypr-yellow);
+}
+
+.term-blue {
+  color: var(--hypr-blue);
+}
+
+.term-magenta {
+  color: var(--hypr-mauve);
+}
+
+.term-cyan {
+  color: var(--hypr-teal);
+}
+
+.term-white {
+  color: var(--hypr-text);
+}
+
+.term-gray {
+  color: var(--hypr-overlay1);
+}
+
+.term-bold {
+  font-weight: 700;
+}
+
+/* =========================================
+   Workspace Animations
+   ========================================= */
+
+@keyframes workspace-slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes workspace-slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes workspace-slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes workspace-slide-out-left {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+.workspace-enter-right {
+  animation: workspace-slide-in-right var(--hypr-transition-slow) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workspace-enter-left {
+  animation: workspace-slide-in-left var(--hypr-transition-slow) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workspace-exit-right {
+  animation: workspace-slide-out-right var(--hypr-transition-slow) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workspace-exit-left {
+  animation: workspace-slide-out-left var(--hypr-transition-slow) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================
+   Neofetch ASCII Art styling
+   ========================================= */
+
+.neofetch-ascii {
+  color: var(--hypr-blue);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.neofetch-info {
+  font-size: 13px;
+}
+
+.neofetch-label {
+  color: var(--hypr-mauve);
+  font-weight: 600;
+}
+
+.neofetch-value {
+  color: var(--hypr-text);
+}
+
+.neofetch-separator {
+  color: var(--hypr-overlay0);
+}
+
+.neofetch-colors {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.neofetch-color-block {
+  width: 24px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+/* =========================================
+   Skills Progress Bars (ASCII style)
+   ========================================= */
+
+.skill-bar {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.skill-bar-fill {
+  color: var(--hypr-green);
+}
+
+.skill-bar-empty {
+  color: var(--hypr-surface1);
+}
+
+/* =========================================
+   Background Wallpaper
+   ========================================= */
+
+.hypr-wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(203, 166, 247, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(137, 180, 250, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(148, 226, 213, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, var(--hypr-crust) 0%, var(--hypr-mantle) 100%);
+}
+
+/* Subtle floating particles effect */
+.hypr-particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--hypr-mauve);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 20s infinite linear;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.3;
+  }
+
+  90% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: translateY(-100vh) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   Utility Classes
+   ========================================= */
+
+.hypr-text-gradient {
+  background: linear-gradient(135deg, var(--hypr-mauve) 0%, var(--hypr-blue) 50%, var(--hypr-teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hypr-glow {
+  box-shadow: 0 0 20px rgba(203, 166, 247, 0.3);
+}
+
+.hypr-border-glow {
+  border: 1px solid var(--hypr-mauve);
+  box-shadow:
+    0 0 10px rgba(203, 166, 247, 0.2),
+    inset 0 0 10px rgba(203, 166, 247, 0.05);
+}
+
+/* Hide scrollbar but allow scrolling */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================
+   Matrix/CMatrix Easter Egg
+   ========================================= */
+
+.cmatrix-char {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--hypr-green);
+  text-shadow: 0 0 8px var(--hypr-green);
+  animation: matrix-fade 1s infinite;
+}
+
+@keyframes matrix-fade {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* =========================================
+   Responsive Adjustments
+   ========================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --hypr-gap: 4px;
+    --hypr-border-radius: 8px;
+  }
+
+  .waybar {
+    height: 32px;
+  }
+
+  .waybar-module {
+    padding: 0 8px;
+    font-size: 11px;
+  }
+
+  .hypr-window-titlebar {
+    padding: 6px 10px;
+  }
+
+  .hypr-terminal {
+    font-size: 11px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
@@ -63,119 +662,4 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-/* Custom animations for hacker theme */
-@keyframes glitch {
-  0% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(-2px, 2px);
-  }
-  40% {
-    transform: translate(-2px, -2px);
-  }
-  60% {
-    transform: translate(2px, 2px);
-  }
-  80% {
-    transform: translate(2px, -2px);
-  }
-  100% {
-    transform: translate(0);
-  }
-}
-
-@keyframes scanline {
-  0% {
-    transform: translateY(-100vh);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
-
-.glitch {
-  animation: glitch 0.3s infinite;
-}
-
-.scanline {
-  animation: scanline 2s linear infinite;
-}
-
-/* Terminal cursor blink */
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
-}
-
-.cursor-blink {
-  animation: blink 1s infinite;
-}
-
-/* Neon glow effects */
-.neon-glow {
-  box-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor, 0 0 20px currentColor;
-}
-
-.neon-text {
-  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor, 0 0 20px currentColor;
-}
-
-/* Matrix rain effect */
-@keyframes matrix-rain {
-  0% {
-    transform: translateY(-100vh);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-}
-
-.matrix-char {
-  animation: matrix-rain 3s linear infinite;
-}
-
-/* Hologram effect */
-.hologram {
-  background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
-  background-size: 200% 200%;
-  animation: hologram-sweep 3s ease-in-out infinite;
-}
-
-@keyframes hologram-sweep {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
-/* CRT screen effect */
-.crt-screen {
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  background-size: 100% 2px, 3px 100%;
-}
-
-/* Typing animation */
-.typing::after {
-  content: "|";
-  animation: blink 1s infinite;
 }
